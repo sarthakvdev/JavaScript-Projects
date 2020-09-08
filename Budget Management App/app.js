@@ -66,6 +66,24 @@ var budgetController = (function() {
             return newItem;
         },
 
+        deleteItem: function(id, type) {
+            var ids, index;
+
+            type = (type === 'income' ? 'inc' : 'exp'); 
+
+            // We are using map function here to callback instead of forEach because map returns a new array
+            ids = data.allItems[type].map(function(current) {
+                return current.id;
+            });
+
+            index = ids.indexOf(id);
+
+            if(index !== -1) {
+                data.allItems[type].splice(index, 1);
+            }
+
+        },
+
         calculateBudget: function() {
             // 1. Calculate Total income and expenses
             calculateTotal('inc');
@@ -141,6 +159,13 @@ var UIController = (function() {
             newHtml = newHtml.replace('%value%', obj.value);
 
             element.insertAdjacentHTML('beforeend', newHtml);
+        },
+
+        deleteListItem: function(selectorID) {
+            // There is no method to directly remove the element but only childElement
+            // So we will transfer it to parentNode and then delete childNode
+            var el = document.getElementById(selectorID);
+            el.parentNode.removeChild(el);
         },
 
         clearFields: function() {
@@ -243,21 +268,21 @@ var controller = (function(budgetCtrl, UICtrl) {
     }
 
     var ctrlDeleteItem = function(event) {
-        var itemID, splitID;
+        var itemID, splitID, type, ID;
 
         itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
         splitID = itemID.split("-");
         type = splitID[0];
-        ID = splitID[1];
-        
-        //1. delete item from Data structure        
+        ID = parseInt(splitID[1]);
+          
+        //1. delete item from Data structure
+        budgetCtrl.deleteItem(ID, type);
 
-
-
-        //2. delete item from UI
+        //2. delete item from UI; Pass itemID so it can directly delete the element from DOM
+        UICtrl.deleteListItem(itemID);
 
         //3. update the budget
-
+        updateBudget();
     }
     
     return {
