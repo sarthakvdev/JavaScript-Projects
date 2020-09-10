@@ -1,8 +1,8 @@
 # BUDGET APP INSTRUCTIONS:
 
 ## Features:
-1. With this **Single Page Budget Application** you can manage your budget but just entering your Data.
-2. You can use both `Right` icon and `Enter` Key to enter label.
+1. With this **Single Page Budget Application** you can manage your budget by just entering your Data.
+2. You can use both `Right Click` icon and `Enter Key` to enter item.
 3. You can remove any particular label by click on `cross icon` on right of it.
 4. You can see the current `month` and `year`
 
