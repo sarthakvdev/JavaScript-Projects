@@ -1,5 +1,6 @@
 import Search from './models/Search';
-// It is importing class Search from Search.js
+import { elements } from './views/base';
+import * as searchView from './views/searchView';
 
 /* Global state of the app
 - Search object
@@ -11,28 +12,26 @@ const state = {};
 
 const controlSearch = async () => {
     // 1. Get query from the queue
-    const query = document.querySelector('.search__field').textContent; //TODO
-
+    // const query = elements.searchField; //TODO
+    const query = searchView.getInput();
+    
     if(query) {
-
-        console.log(query);
         // 2. create an object in state
         state.search = new Search(query);
 
         // 3. Prepare UI for new results
-
+        searchView.clearInput();
+        searchView.clearResults();
         // 4. get Results of the search.
         // We need to await this step so it get data from API -> async the function
         await state.search.getResults();
 
         // 5. Render results on UI
-        console.log(state.search.result);
-    } else {
-        console.log('No query');
+        searchView.renderResults(state.search.result);
     }
 }
 
-document.querySelector('.search').addEventListener('submit', e => {
+elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
 });
