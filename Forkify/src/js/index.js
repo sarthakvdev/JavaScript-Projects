@@ -1,5 +1,5 @@
 import Search from './models/Search';
-import { elements } from './views/base';
+import { elements, renderLoader, clearLoader } from './views/base';
 import * as searchView from './views/searchView';
 
 /* Global state of the app
@@ -12,7 +12,6 @@ const state = {};
 
 const controlSearch = async () => {
     // 1. Get query from the queue
-    // const query = elements.searchField; //TODO
     const query = searchView.getInput();
     
     if(query) {
@@ -22,11 +21,14 @@ const controlSearch = async () => {
         // 3. Prepare UI for new results
         searchView.clearInput();
         searchView.clearResults();
+        renderLoader(elements.searchRes); // Adding loader to result panel
+
         // 4. get Results of the search.
         // We need to await this step so it get data from API -> async the function
         await state.search.getResults();
 
         // 5. Render results on UI
+        clearLoader();
         searchView.renderResults(state.search.result);
     }
 }
