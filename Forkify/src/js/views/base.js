@@ -18,10 +18,11 @@ export const renderLoader = parent => {
             <use href="img/icons.svg#icon-cw"></use>
         </svg>
     </div>`;
-
+    // We want it just after div starts
     parent.insertAdjacentHTML('afterbegin', loader);
 }
 
+// selecting loader and going to parent element and delete it
 export const clearLoader = () => {
     const loader = document.querySelector(`.${elementStrings.loader}`);
     if(loader)
