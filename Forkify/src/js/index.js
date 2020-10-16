@@ -16,7 +16,7 @@ const state = {};
 const controlSearch = async () => {
     // 1. Get query from the queue
     const query = searchView.getInput();
-    
+
     if(query) {
         // 2. create an object in state
         state.search = new Search(query);
@@ -59,7 +59,7 @@ elements.searchResPages.addEventListener('click', e => {
 const controlRecipe = async () => {
     const id = window.location.hash.replace('#', '') ; // To extract hash from url
     if(id) {
-        // Prepare for UI
+        // Prepare UI for changes
 
         // Create new UI object
         state.recipe = new Recipe(id);
@@ -72,7 +72,8 @@ const controlRecipe = async () => {
         state.recipe.calcServings();
 
         // render data
-        // console.log(state.recipe);
+        state.recipe.parseIngredients();
+        console.log(state.recipe.ingredients);
     }
 }
 
