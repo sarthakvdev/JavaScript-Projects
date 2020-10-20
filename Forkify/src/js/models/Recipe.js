@@ -32,6 +32,8 @@ export default class Recipe {
     parseIngredients() {
         const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds']; 
         const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound'];
+        // const units = [...unitsShort, 'kg', 'g'];
+
         const newIngredients = this.ingredients.map(ele => {
             let ingredient = ele.toLowerCase();
             // 1. convert from long to short form
@@ -57,10 +59,9 @@ export default class Recipe {
                 if(arrCount.length == 1) {
                     count = eval(arrCount[0].replace('-', '+'));
                 } else if(arrCount > 0) {
-                    // Ex. this turns [4,1/2] -> "4+1/2" and eval("4+1/2") --> 4.5
+                    // Ex. this turns [4,1/2] -> "4+1/2" and eval("4+1/2") --> 4.5   
                     count = eval(arrIng.slice(0, unitIndex).join('+'));
                 }
-
                 objIng = {
                     count,
                     unit: arrIng[unitIndex],

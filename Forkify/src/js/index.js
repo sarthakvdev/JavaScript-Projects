@@ -2,6 +2,7 @@ import Search from './models/Search';
 import Recipe from './models/Recipe';
 import { elements, renderLoader, clearLoader, elementStrings } from './views/base';
 import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeView';
 
 /* Global state of the app
 - Search object
@@ -60,20 +61,31 @@ const controlRecipe = async () => {
     const id = window.location.hash.replace('#', '') ; // To extract hash from url
     if(id) {
         // Prepare UI for changes
+        recipeView.clearRecipe();
+        renderLoader(elements.recipe);
+
+        // Highlight selected search item
+        if(state.search) searchView.highlightSelected(id);
 
         // Create new UI object
         state.recipe = new Recipe(id);
+        
+        try {
+            // get recipe data and parse Ingredients
+            await state.recipe.getRecipe();
+            state.recipe.parseIngredients();
+            console.log(state.recipe.ingredients);
 
-        // get recipe data
-        await state.recipe.getRecipe();
+            // calculate serving and timing
+            state.recipe.calcTime();
+            state.recipe.calcServings();
 
-        // calculate serving and timing
-        state.recipe.calcTime();
-        state.recipe.calcServings();
-
-        // render data
-        state.recipe.parseIngredients();
-        console.log(state.recipe.ingredients);
+            //render recipe
+            clearLoader();
+            recipeView.renderRecipe(state.recipe);
+        } catch(error) {
+            console.log(`Error: ${error}`);
+        }
     }
 }
 
