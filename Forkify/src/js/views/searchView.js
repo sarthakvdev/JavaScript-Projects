@@ -19,11 +19,11 @@ export const highlightSelected = id =>  {
         el.classList.remove('.results__link--active');
     });
 
-    document.querySelector(`a[href*="#${id}"]`).classList.add('results__link--active');
+    document.querySelector(`.results__link[href*="#${id}"]`).classList.add('results__link--active');
 }
 
 // Setting limit to the length of title of recipe in recipe panel
-const limitRecipeTitle = (title, limit = 17) => {
+export const limitRecipeTitle = (title, limit = 17) => {
     const newTitle = [];
     if (title.length > limit) {
         title.split(' ').reduce((acc, cur) => {
@@ -37,7 +37,7 @@ const limitRecipeTitle = (title, limit = 17) => {
     }
     return title;
 }
-
+ 
 // This markup code is added to HTML under searchResList
 const renderRecipes = recipe => {
     const markup = `

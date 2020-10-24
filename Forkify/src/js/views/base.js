@@ -4,7 +4,10 @@ export const elements = {
     searchRes: document.querySelector('.results'),
     searchResList: document.querySelector('.results__list'),
     searchResPages: document.querySelector('.results__pages'),
-    recipe: document.querySelector('.recipe')
+    recipe: document.querySelector('.recipe'),
+    shopping: document.querySelector('.shopping__list'),
+    likesMenu: document.querySelector('.likes__field'),
+    likesList: document.querySelector('.likes__list')
 };
 
 export const elementStrings = {
@@ -15,11 +18,11 @@ export const elementStrings = {
 // We want to reuse it so adding in base.js
 export const renderLoader = parent => {
     const loader = `
-    <div class="loader">
-        <svg>
-            <use href="img/icons.svg#icon-cw"></use>
-        </svg>
-    </div>`;
+        <div class="loader">
+            <svg>
+                <use href="img/icons.svg#icon-cw"></use>
+            </svg>
+        </div>`;
     // We want it just after div starts
     parent.insertAdjacentHTML('afterbegin', loader);
 }
