@@ -8,8 +8,10 @@
 
 var score, roundScore, activeplayer, gamePlaying;
 var diceDOM = document.querySelector('.dice');
+// var playerName1;
 
-init();
+askPlayerName();
+
 //getElementBy method is faster than querySelector
 
  // 'click' is a property of Event Listener, setting event to 'click' and cause to anonymous function 
@@ -66,23 +68,48 @@ init();
    diceDOM.style.display = 'none'; //hide the dice after turn changes
 }
 
-document.querySelector('.btn-new').addEventListener('click', init);
+// Button to Re-Start the Game
+// document.querySelector('.btn-new').addEventListener('click', init(playerName1));
 
-function init() {
+// Function that asks the name of players and assign to the DOM
+function askPlayerName() {
+   document.querySelector('.wrapper').style.display = 'none'; // Hiding till we get player 1 name
+
+   document.getElementById('submit-name').addEventListener("click", () => {
+      document.querySelector('.wrapper').style.display = 'block';
+      document.querySelector('.initials').style.display = 'none';
+      init(document.getElementById('input-fname-1').value, document.getElementById('input-fname-2').value);
+      // Hiding the name asking Panel
+      
+   });
+   
+   document.addEventListener("keypress", event => { 
+      if(event.keyCode === 13 || event.which === 13) {
+         document.querySelector('.wrapper').style.display = 'block';
+         init(document.getElementById('input-fname-1').value, document.getElementById('input-fname-2').value);
+         // Hiding the name asking Panel
+         document.querySelector('.initials').style.display = 'none';
+      }
+  });
+}
+
+function init(playerName1, playerName2) {
+   // playerName1 = playerName;
+
    gamePlaying = true;
    score = [0, 0];   //index 0 player-1 and index 1 player-2
    roundScore = 0;   //score of each round
    activePlayer = 0; //index of active player
-
+   
    diceDOM.style.display = 'none';    //Hiding dice image before starting that game
- 
+
    document.getElementById('score-0').textContent = '0'; //setting the display of all scores to zero
    document.getElementById('score-1').textContent = '0';
    document.getElementById('current-0').textContent = '0';
    document.getElementById('current-1').textContent = '0';
-   document.getElementById('name-0').textContent = 'Player 1';
-   document.getElementById('name-1').textContent = 'Player 2';
-
+   document.getElementById('name-0').textContent = playerName1;
+   document.getElementById('name-1').textContent = playerName2;
+   
    document.querySelector('.player-0-panel').classList.remove('winner');
    document.querySelector('.player-1-panel').classList.remove('winner');
    document.querySelector('.player-0-panel').classList.remove('active');
