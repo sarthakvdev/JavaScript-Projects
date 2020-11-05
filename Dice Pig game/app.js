@@ -8,7 +8,7 @@
 
 var score, roundScore, activeplayer, gamePlaying;
 var diceDOM = document.querySelector('.dice');
-// var playerName1;
+var playerName1, playerName2;
 
 askPlayerName();
 
@@ -69,18 +69,24 @@ askPlayerName();
 }
 
 // Button to Re-Start the Game
-// document.querySelector('.btn-new').addEventListener('click', init(playerName1));
+
+document.querySelector('.btn-new').addEventListener('click', () => {
+   document.querySelector('#input-fname-1').value = '';
+   document.querySelector('#input-fname-2').value = '';
+   document.querySelector('.initials').style.display = 'block';
+   askPlayerName();
+});
 
 // Function that asks the name of players and assign to the DOM
 function askPlayerName() {
    document.querySelector('.wrapper').style.display = 'none'; // Hiding till we get player 1 name
 
    document.getElementById('submit-name').addEventListener("click", () => {
-      document.querySelector('.wrapper').style.display = 'block';
-      document.querySelector('.initials').style.display = 'none';
-      init(document.getElementById('input-fname-1').value, document.getElementById('input-fname-2').value);
-      // Hiding the name asking Panel
-      
+      document.querySelector('.wrapper').style.display = 'block'; // showing the game panel
+      document.querySelector('.initials').style.display = 'none'; // hiding the name panel
+      playerName1 = document.getElementById('input-fname-1').value;
+      playerName2 = document.getElementById('input-fname-2').value;
+      init(playerName1, playerName2);
    });
    
    document.addEventListener("keypress", event => { 

@@ -268,7 +268,6 @@ var UIController = (function() {
                 } else {
                     current.textContent = "---";
                 }
-                
             });
         },
 
