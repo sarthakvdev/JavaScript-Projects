@@ -1,0 +1,125 @@
+body {
+    background: #696969;
+}
+
+.base {
+    background: #fff;
+    padding: 5px;
+    margin: 25px auto;
+    width: 200px;
+    height: 400px;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: 'VT323', monospace; */
+    box-shadow: -3px 5px 25px -6px rgba(0,0,0,0.75);
+}
+
+.display-panel {
+    width: 95%;
+    height: 30%;
+    background: #eee;
+    margin: auto;
+    padding: 5px;
+    text-align: right;
+    border-radius: 10px;
+    cursor: default;
+}
+
+p {
+    color: #777;
+    margin-right: 10px;
+}
+
+h1 {
+    color: #343434;
+    margin-right: 10px;
+}
+
+.top-row {
+    margin-left: 5px;
+    margin-bottom: -5px;
+    border-spacing: 5px;
+    width: 95%;
+    text-align: center;    
+}
+
+.mid-bottom {
+    margin: 0px auto;
+    border-spacing: 7px;
+    width: 95%;
+    height: 100%;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    background: #eee;
+    margin: 1px auto;
+    border: transparent;
+    padding: 8px 9px;
+    border-radius: 10px;
+    color: #000;
+    cursor: pointer;
+    display: grid;
+    outline: none;
+    transition: 0.4s;
+}
+
+input:hover {
+    background: #ddd;
+}
+
+input:active {
+    background: rgb(211, 210, 210);
+}
+
+.right-btn {
+    background: #FFA500;
+}
+.right-btn:hover {
+    background: #ff9008;
+}
+.right-btn:active {
+    background: #ec8302;
+}
+
+.equal-btn {
+    background: #2cb04f;
+}
+.equal-btn:hover {
+    background: #289c47;
+}
+.equal-btn:active {
+    background: #238f40;
+}
+
+#clear {
+    color: #f00;
+    background: rgb(247, 223, 223);
+}
+#clear:hover {
+    background: rgb(252, 206, 206);
+}
+#clear:active {
+    background: rgb(250, 194, 194);
+}
+
+#undo {
+    width: 100%;
+    background: #eee;
+    margin: 1px auto;
+    border: transparent;
+    padding: 8px 9px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: grid;
+    outline: none;
+    transition: 0.4s;
+    background: #f0ecc5;
+}
+#undo:hover {
+    background: #faf3b4;
+}
+#under:active {
+    background: #000;
+}

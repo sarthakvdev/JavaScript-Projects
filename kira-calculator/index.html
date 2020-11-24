@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="calc.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <div class="base">
+            <div class="display-panel">
+                <p class="eq">equation</p>
+                <h1 class="result">Result</h1>
+            </div>
+
+            <div class="table-base">
+                <table class="top-row">
+                    <tr>
+                        <td><input type="button" value="e" class="button" onclick="display('e')"/></td>
+                        <td><input type="button" value="π" class="button" onclick="display('π')"/></td>
+                        <td><input type="button" value="(" class="button" onclick="display('(')"/></td>
+                        <td><input type="button" value=")" class="button" onclick="display(')')"/></td>
+                    </tr>
+                </table>
+                <table class="mid-bottom">
+                    <tr>
+                        <td><input type="button" value="C" id="clear" class="button" onclick="clearDisplay()"/></td>
+                        <!-- <td><input type="image" src="https://www.flaticon.com/svg/static/icons/svg/724/724893.svg" id="undo" onclick=""/></td> -->
+                        <td><button id="undo" onclick="undo()"><img src="https://www.flaticon.com/svg/static/icons/svg/724/724893.svg"/></button></td>
+                        <td><input type="button" value="x²" class="button" onclick="square()"/></td>
+                        <td><input type="button" value="÷" class="right-btn button" onclick="display('÷')"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="button" value="7" class="button" onclick="display('7')"/></td>
+                        <td><input type="button" value="8" class="button" onclick="display('8')"/></td>
+                        <td><input type="button" value="9" class="button" onclick="display('9')"/></td>
+                        <td><input type="button" value="x" class="right-btn" onclick="display('x')"/></td>                        
+                    </tr>
+
+                    <tr>
+                        <td><input type="button" value="4" class="button" onclick="display('4')"/></td>
+                        <td><input type="button" value="5" class="button" onclick="display('5')"/></td>
+                        <td><input type="button" value="6" class="button" onclick="display('6')"/></td>
+                        <td><input type="button" value="-" class="right-btn" onclick="display('-')"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="button" value="1" class="button" onclick="display('1')"/></td>
+                        <td><input type="button" value="2" class="button" onclick="display('2')"/></td>
+                        <td><input type="button" value="3" class="button" onclick="display('3')"/></td>
+                        <td><input type="button" value="+" class="right-btn button" onclick="display('+')"/></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2"><input type="button" value="0" onclick="display('0')"/></td>
+                        <td><input type="button" value="." onclick="display('.')"/></td>
+                        <td><input type="button" value="=" class="equal-btn" onclick="solve()"/></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <script src="calc.js"></script>
+    </body>
+</html>
