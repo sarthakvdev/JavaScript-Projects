@@ -1,4 +1,6 @@
+let eqArray = [];
 let equation = '';
+let prevEquation = '';
 let solution;
 
 let base = {
@@ -12,17 +14,26 @@ function clearDisplay() {
     // changing text of equation and result to empty string
     base.displayEquation.textContent = '';
     base.displayResult.textContent = '';
+    eqArray = [];
+}
 
-    equation = '';
+function turnString(eqArr) {
+    let eq = '';
+    eqArr.forEach(ele => {
+        if(Number.isInteger(parseInt(ele)) || ele === '.') {
+            eq += ele;
+        } else {
+            eq += ` ${ele} `;
+        }
+    })
+    return eq;
 }
 
 function display(ele) {
-    // checking and inserting on the basis of Integers or symbols
-    if(Number.isInteger(parseInt(ele)) || ele === '.') {
-        equation += ele;
-    } else {
-        equation += ` ${ele} `;
-    }
+    // Pushing every element into a char Array
+    eqArray.push(ele);
+    // turning chars from array into a string to display
+    equation = turnString(eqArray);
 
     base.displayResult.textContent = '';
     base.displayEquation.textContent = equation;
@@ -31,6 +42,13 @@ function display(ele) {
 // Bool: checks if a number is int or float
 function checkInteger(num) {
     return num === Math.floor(num);
+}
+
+function undo() {
+    eqArray.pop();
+    equation = turnString(eqArray);
+    base.displayResult.textContent = '';
+    base.displayEquation.textContent = equation;
 }
 
 function solve() {
@@ -57,9 +75,14 @@ function solve() {
 }
 
 function square() {
-    if(base.displayEquation.textContent !== '') {
+    try {
+        if(base.displayEquation.textContent !== '' || base.displayEquation.textContent !== 'Result') {
         solve();
         base.displayResult.textContent = parseFloat(base.displayResult.textContent) ** 2;
-
+        } else {
+            base.displayResult.textContent = 'check equation';
+        }
+    } catch(e) {
+        base.displayResult.textContent = 'check Equation';
     }
 }
